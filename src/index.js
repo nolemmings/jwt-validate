@@ -33,7 +33,7 @@ export function checkScope(requestScope, allowedScope) {
  * Grabs the bearer token from the request header and checks whether it contains
  * one of allowed scopes.
  */
-export function validateScopes(req, ...allowedScopes) {
+export function validateScope(req, ...allowedScopes) {
   if (!req.get('Authorization') || !req.get('Authorization').startsWith('Bearer ')) {
     throw new UnauthorizedError('invalid_token', 'No bearer token set');
   }

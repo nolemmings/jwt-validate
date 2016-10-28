@@ -5,7 +5,7 @@ This library contains JWT validation utility functions.
 ## Example
 
 ```js
-import { validateScopes } from `@nolemmings/jwt-validate`;
+import { validateScope } from `@nolemmings/jwt-validate`;
 import express from 'express';
 
 const app = express();
@@ -13,7 +13,7 @@ const app = express();
 app.get('/hello', (req, res) => {
   // Throws error if req.headers.Authorization does not contain valid jwt
   // or does not have scope 'hello:read' or 'hello'
-  validateScopes(req, 'hello:read');
+  validateScope(req, 'hello:read');
 
   res.send('You have a valid request bearer');
 });
@@ -21,19 +21,19 @@ app.get('/hello', (req, res) => {
 app.listen(3000);
 ```
 
-## validateScopes(req, ...allowedScopes)
+## validateScope(req, ...allowedScopes)
 
 Checks whether request header contains one of `allowedScopes`. Throws an error if `Authorization` header does not have one of allowedScopes.
 
-Scopes are interpreted as a hierarchical structure delimited by `:`. For example, `validateScopes(req, 'user:email:read')` would succeed if JWT scope has one of the following scopes: `['user', 'user:email', 'user:email:read']`.
+Scopes are interpreted as a hierarchical structure delimited by `:`. For example, `validateScope(req, 'user:email:read')` would succeed if JWT scope has one of the following scopes: `['user', 'user:email', 'user:email:read']`.
 
 Example:
 
 ```js
-import { validateScopes } from `@nolemmings/jwt-validate`;
+import { validateScope } from `@nolemmings/jwt-validate`;
 
 // Checks if JWT scope contains either 'hello', 'hello:read' or 'admin'
-validateScopes(req, 'hello:read', 'admin');
+validateScope(req, 'hello:read', 'admin');
 ```
 
 When failed an error is thrown with the following format:

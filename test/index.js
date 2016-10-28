@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { expect } from 'chai';
-import { checkScope, validateScopes } from '../src';
+import { checkScope, validateScope } from '../src';
 
 /**
  * Creates a request object stub with a signed JWT Authorization Bearer.
@@ -28,19 +28,19 @@ describe('checkScope(requestScope, allowedScope)', () => {
   });
 });
 
-describe('validateScopes(req, ...allowedScopes)', () => {
+describe('validateScope(req, ...allowedScopes)', () => {
   it('should pass hierarchical scopes', () => {
-    validateScopes(createRequest('user:emails'), 'user:emails');
-    validateScopes(createRequest('user'), 'user:emails');
+    validateScope(createRequest('user:emails'), 'user:emails');
+    validateScope(createRequest('user'), 'user:emails');
   });
 
   it('should accept multiple allowedScopes', () => {
-    validateScopes(createRequest('admin'), 'user:emails', 'admin');
+    validateScope(createRequest('admin'), 'user:emails', 'admin');
   });
 
   it('should throw 403 "insufficient_scope" if request scope is insufficient', () => {
     try {
-      validateScopes(createRequest('user:emails'), 'user', 'admin');
+      validateScope(createRequest('user:emails'), 'user', 'admin');
       expect(true).to.equal(false); // Intentionally fail, an error should have been thrown
     } catch (err) {
       expect(err.httpStatus).to.equal(403);
@@ -54,7 +54,7 @@ describe('validateScopes(req, ...allowedScopes)', () => {
       get: () => undefined,
     };
     try {
-      validateScopes(reqStub, 'user', 'admin');
+      validateScope(reqStub, 'user', 'admin');
       expect(true).to.equal(false); // Intentionally fail, an error should have been thrown
     } catch (err) {
       expect(err.httpStatus).to.equal(401);
@@ -68,7 +68,7 @@ describe('validateScopes(req, ...allowedScopes)', () => {
       get: () => jwt.sign({ scope: 'no-bearer' }, 'secret'), // misses Bearer prefix
     };
     try {
-      validateScopes(reqStub, 'user', 'admin');
+      validateScope(reqStub, 'user', 'admin');
       expect(true).to.equal(false); // Intentionally fail, an error should have been thrown
     } catch (err) {
       expect(err.httpStatus).to.equal(401);
@@ -82,7 +82,7 @@ describe('validateScopes(req, ...allowedScopes)', () => {
       get: () => 'Bearer malformedtoken', // misses Bearer prefix
     };
     try {
-      validateScopes(reqStub, 'user', 'admin');
+      validateScope(reqStub, 'user', 'admin');
       expect(true).to.equal(false); // Intentionally fail, an error should have been thrown
     } catch (err) {
       expect(err.httpStatus).to.equal(401);
