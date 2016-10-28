@@ -2,7 +2,7 @@
   "name": "@nolemmings/jwt-validate",
   "version": "0.0.3",
   "description": "Node.js library to validate hierarchical JWT scopes",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "author": "Nolemmings <dev@nolemmings.nl>",
   "license": "ISC",
   "repository": {
@@ -21,7 +21,8 @@
     "mocha": "^2.5.3"
   },
   "scripts": {
+    "build": "rm -rf ./dist && babel src --out-dir dist",
     "test": "mocha",
-    "prepublish": "npm test"
+    "prepublish": "npm test && npm run build"
   }
 }
