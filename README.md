@@ -54,7 +54,7 @@ Error codes are from [RFC 6750](https://tools.ietf.org/html/rfc6750).
 
 ## checkScope(requestScope, allowedScope)
 
-Checks whether a single request scope matches `allowedScope` or if request scope contains a scope higher in hierarchy.
+Returns `true` if a single request scope matches `allowedScope` or if request scope contains a scope higher in hierarchy. Otherwise returns `false`.
 
 For example:
 
