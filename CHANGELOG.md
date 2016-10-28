@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.0] - 2016-10-28
+### Changed
+- Publish in ES5 rather than ES6
+
 ## [0.0.3] - 2016-10-28
 ### Fixed
 - Package.json now contains the correct main file path
