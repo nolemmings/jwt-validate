@@ -1,6 +1,6 @@
 {
   "name": "@nolemmings/jwt-validate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js library to validate hierarchical JWT scopes",
   "main": "src/index.js",
   "author": "Nolemmings <dev@nolemmings.nl>",
