@@ -23,7 +23,7 @@ app.listen(3000);
 
 ## validateScope(req, ...allowedScopes)
 
-Checks if Authorization header has a JWT with a `scope` that matches at least one of `allowedScopes`. Throws an error if `Authorization` no match was found.
+Checks if Authorization header has a JWT with a `scope` that matches at least one of `allowedScopes`. Throws an error if no match was found.
 
 Scopes are interpreted as a hierarchical structure delimited by `:`. For example, `validateScope(req, 'user:email:read')` would succeed if JWT scope has one of the following scopes: `['user', 'user:email', 'user:email:read']`.
 
