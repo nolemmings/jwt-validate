@@ -2,10 +2,16 @@
 
 This library contains JWT validation utility functions.
 
+## Installation
+
+```sh
+npm install @nolemmings/jwt-validate
+```
+
 ## Example
 
 ```js
-import { validateScope } from `@nolemmings/jwt-validate`;
+import { validateScope } from '@nolemmings/jwt-validate';
 import express from 'express';
 
 const app = express();
@@ -30,7 +36,7 @@ Scopes are interpreted as a hierarchical structure delimited by `:`. For example
 Example:
 
 ```js
-import { validateScope } from `@nolemmings/jwt-validate`;
+import { validateScope } from '@nolemmings/jwt-validate';
 
 // Checks if JWT scope contains either 'hello', 'hello:read' or 'admin'
 validateScope(req, 'hello:read', 'admin');
@@ -59,7 +65,7 @@ Returns `true` if a single request scope matches `allowedScope` or if request sc
 For example:
 
 ```js
-import { checkScope } from `@nolemmings/jwt-validate`;
+import { checkScope } from '@nolemmings/jwt-validate';
 
 checkScope('user:email', 'user:email:read'); // Returns true
 checkScope('user', 'user:email:read'); // Returns true
